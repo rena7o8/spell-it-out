@@ -51,26 +51,51 @@ public class SpellItOut {
             return unidades[n];
 	}
         
-        if (n < 100) { //falta validar o nr 100
-            return dezenas[n / 10] + " e " + unidades[n % 10];
+        if (n <= 100) {
+            if ( n == 100){
+                return "cem";
+            }else{
+                return dezenas[n / 10] + " e " + unidades[n % 10];
+            }  
         }
         
-        if (n < 1000) {
-            return centenas[n / 100] + " e " + converter(n % 100);
+        if (n <= 1000) {
+            if ( n == 1000){
+                return "mil";
+            }else{
+                return centenas[n / 100] + " e " + converter(n % 100);
+            }
 	}
         
-        if (n < 1000000) { //falta validar todos os nrs 1000
-            return converter(n / 1000) + " mil e " + converter(n % 1000);
+        if (n <= 1000000) {
+            if ( n == 1000000){
+                return "um milhão";
+            }else{
+                return converter(n / 1000) + " mil e " + converter(n % 1000);
+            }
 	}
         
-        return "nada";
+        if (n <= 1000000000) {
+            if ( n == 1000000000){
+                return "um bilião";
+            }else if (n < 20000000){
+                return unidades[n / 1000000] + " milhões e " + converter(n % 1000000);
+            }
+            else if (n < 100000000){
+                return dezenas[n / 1000000] + " milhões e " + converter(n % 1000000);
+            }
+            else{
+                return centenas[n / 1000000] + " milhões e " + converter(n % 1000000);
+            }
+	}
+        
+        return "número inválido";
     }
     
     public static void main(String[] args) {
         
         int n;
-	n = 972333;
+	n = 56968542;
 	System.out.println(converter(n) + "");
     }
-    
 }
